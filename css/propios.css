@@ -1,0 +1,87 @@
+#principal {
+ width: 200px;
+ margin: 0 auto;
+}
+
+.cajas {
+ width: 200px;
+ margin: 0 auto;
+
+}
+
+.centrar {
+
+ margin: 0 auto;
+
+ background-color:blue;
+
+}
+
+
+
+.derecha {
+	
+ float: left;
+margin-top: -8px;
+margin-right: 2%;
+}
+
+.todo {
+ width: %95;
+ margin: 0 auto;
+
+}
+
+p.text{
+float: none;
+color: red; 
+border-radius: 0em;
+text-decoration: none;
+background-image: url(none); 
+background-repeat: no-repeat;
+line-height: 25px;
+font-size: 18px;
+} 
+
+
+p.user{
+float: none;
+color: black; 
+border-radius: 0em;
+text-decoration: none;
+background-image: url(none); 
+background-repeat: no-repeat;
+line-height: 25px;
+font-size: 18px;
+}
+
+p.link{
+float: none;
+color: blue; 
+border-radius: 0em;
+text-decoration: none;
+background-image: url(none); 
+background-repeat: no-repeat;
+line-height: 25px;
+font-size: 14px;
+} 
+#publicar {
+ width: 100%;
+ margin: 0 auto;
+}
+
+#Prueba{
+float: none;
+color: red; 
+} 
+
+.imagen
+{
+ width: 300px;
+ height: 300px:
+ float: left;
+
+}
+
+#search_box { float: right; width: 280px; height: 30px; }
+#search_box form { clear: both; width: 280px; height: 30px; padding: 0; } 
