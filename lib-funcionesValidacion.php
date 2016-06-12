@@ -37,8 +37,8 @@ function validarUsuario($cadena){
 	if (strlen($cadena)<5)
 	$errorParcial="$errorParcial <p>El Usuario debe tener como minimo 5 letras</p>";
 
-	if (strlen($cadena)>10)
-	$errorParcial="$errorParcial <p>El Usuario debe tener como maximo 10 letras</p>";
+	if (strlen($cadena)>12)
+	$errorParcial="$errorParcial <p>El Usuario debe tener como maximo 12 letras</p>";
 
 		if ($errorParcial)
 			return $errorParcial;

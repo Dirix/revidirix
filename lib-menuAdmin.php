@@ -1,4 +1,4 @@
-<div class="row">
+<!-- <div class="row"> -->
   <div class="col-sm-3nueva">
     <div class="sidebar-nav">
       <div class="navbar navbar-default" role="navigation">
@@ -16,6 +16,7 @@
             <p class="titulo">Administrador</p>
             <li><a href="#">Crear usuario</a></li>
             <li><a href="#">Editar usuario</a></li>
+            <li><a href="buscarUsuario.php">Buscar cliente</a></li>
             <li><a href="#">Generar publicacion</a></li>			
             <li><a href="#">Editar publicacion</a></li>	
             <li><a href="#">Generar suscripcion</a></li>			
@@ -48,6 +49,7 @@
     Main content goes here
   </div>
   -->
-</div>
+
+<!-- </div> -->
 
 

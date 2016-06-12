@@ -30,7 +30,7 @@ session_start();
 		
 		
 <div class="container">
-  <div class="row">
+  <!-- <div class="row"> -->
     <div class="span7 offset5"></div>	
 	
 
@@ -45,23 +45,24 @@ session_start();
 			 
 													  <ul class="list-group">
 
-
-
+															<!-- Insertamos el formulario de registracion-->
+															<form class='form-horizontal' action='crearUsuario.php' method='post'>
 																<?php
-															//Insertamos el formulario de registracion
+															
 																include "lib-formulario.php";
+															
 															?>
+															
+															</form>
 														
-														
-														
-														
+	
 														
 
 													  </ul>
 			  
 								  </div>
 					</div>		
-	</div>
+	<!-- </div> -->
 </div>
 
 	</body>

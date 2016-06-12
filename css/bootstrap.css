@@ -1820,6 +1820,8 @@ pre code {
     width: 25%;
   }
   .col-sm-3nueva {
+	position: relative;
+	float: left;
     width: 13%;
   }
   .col-sm-2 {
@@ -2444,7 +2446,8 @@ table th[class*="col-"] {
 .table > thead > tr.danger > th,
 .table > tbody > tr.danger > th,
 .table > tfoot > tr.danger > th {
-  background-color: #f2dede;
+  background: linear-gradient(to right, #569FFD, #76B1FE, #569FFD, #76B1FE, #569FFD); /* Standard syntax */
+  border-color: #e7e7e7;
 }
 .table-hover > tbody > tr > td.danger:hover,
 .table-hover > tbody > tr > th.danger:hover,
