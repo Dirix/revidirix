@@ -31,8 +31,8 @@ function verificarRol($nombre_usuario){
 						$_SESSION["apellido"] = $row['apellido'];
 						$_SESSION["mail"] = $row['correo'];
 						$_SESSION["dni"] = $row['dni'];
-						$_SESSION["direccion"] = $row['domicilio'];
-						$_SESSION["rol"] =	'descripcion';				
+						$_SESSION["direccion"] = $row['direccion'];
+						$_SESSION["rol"] =	$row['descripcion'];				
 						header ("Location: index.php");		//Logueamos y enviamos al index	
 						exit();
 						}

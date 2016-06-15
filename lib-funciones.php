@@ -3,6 +3,8 @@
 //Esta funcion se encarga de generar el listado y paginado de las consultas, y devolverlo en forma de array
 function consultar($cadena){ 
 
+
+
 	$consulta=$cadena . " "; // La consulta recibida por parametro
 	$numero_paginas=3; //Numero de resultado por pagina
 	
@@ -32,12 +34,17 @@ $consulta = $cadena . " ";
 $rs_noticias = mysql_query($consulta, $conexion);
 $num_total_registros = mysql_num_rows($rs_noticias);
 //Si hay registros
+$inicio= "";
 if ($num_total_registros > 0) {
 	
 
 	$TAMANO_PAGINA = $tamaño; //Numero de resultados por pagina
         $pagina = false;
 
+	//examino si hay alguna busqueda ingresada
+        if (isset($_GET["busqueda"]))
+            $busqueda = $_GET["busqueda"];		
+		
 	//examino la pagina a mostrar y el inicio del registro a mostrar
         if (isset($_GET["pagina"]))
             $pagina = $_GET["pagina"];
@@ -68,6 +75,7 @@ include "conexion.php";
 	//Mostramos el resultado de la pagina
 	$consulta_sql= $consulta_sql . "ORDER BY nombre DESC LIMIT ".$inicio."," . $TAMANO_PAGINA;
 	$rs = mysql_query($consulta_sql, $conexion);
+
 	return $rs;
 	
 	//while ($row = mysql_fetch_array($rs)) {

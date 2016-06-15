@@ -54,7 +54,7 @@
 
 						
 							<!-- Insertamos el formulario de edicion de usuario-->
-							<form class='form-horizontal' action='editarCliente.php' method='post'>
+							<form class='form-horizontal' action='editarUsuario.php' method='post'>
 							
 							
 							
@@ -67,8 +67,8 @@
 							echo "<input type='hidden' name='id' value=$nro />";
 							
 							$consulta="
-							select * from cliente
-							where id_cliente=$nro
+							select * from usuario
+							where id_usuario=$nro
 							
 							";
 							

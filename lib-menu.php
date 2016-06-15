@@ -59,7 +59,7 @@
 							echo "
 							<ul class='nav navbar-nav navbar-right'>
 							 <li><a class='log' href='login.php'>Ingresar</a></li>
-							<li><a class='log' href='registrar.php?error_usuario=&error_clave='>Registrarse</a></li>
+							<li><a class='log' href='registrarCliente.php'>Registrarse</a></li>
 							</ul>
 							";
 						}

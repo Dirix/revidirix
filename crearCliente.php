@@ -28,7 +28,7 @@ else
 validarNuevoUsuario($nombre, $usuario, $clave, $apellido, $mail, $dni, $fecha, $telefono, $genero);
 
 			//Verificamos si el usuario existe
-			$sql="select * from usuario where login='$usuario'";
+			$sql="select * from cliente where login='$usuario'";
 			$result=mysql_query($sql, $conexion) or die (mysql_error());
 			if (mysql_num_rows($result)>0)
 			{
@@ -40,14 +40,27 @@ validarNuevoUsuario($nombre, $usuario, $clave, $apellido, $mail, $dni, $fecha, $
 			
 			
 			//Creamos usuario
-			$sql="INSERT INTO usuario (login,clave,nombre, apellido, correo, dni, telefono, direccion, genero, fecha_nacimiento, rol, id_localidad)
-			VALUES ('$usuario', '$clave', '$nombre', '$apellido', '$mail', '$dni', '$telefono', '$direccion', '$genero', '$fecha', 2, 1)";
+			$sql="INSERT INTO cliente (login,clave,nombre, apellido, correo, dni, telefono, direccion, genero, fecha_nacimiento)
+			VALUES ('$usuario', '$clave', '$nombre', '$apellido', '$mail', '$dni', '$telefono', '$direccion', '$genero', '$fecha')";
 
 			//Guardamos el usuario en la Base de Datos
 			$result=mysql_query($sql, $conexion);
 
 			
-			echo "El contenidista ha sido creado correctamente";
+			//Iniciamos la session con los Datos
+			
+						$_SESSION["usuario"] = $usuario;
+						$_SESSION["clave"] = $clave;
+						$_SESSION["nombre"] = $nombre;
+						$_SESSION["apellido"] = $apellido;
+						$_SESSION["mail"] = $mail;
+						$_SESSION["dni"] = $dni;
+						$_SESSION["telefono"] = $telefono;
+						$_SESSION["direccion"] = $direccion;
+						$_SESSION["genero"] = $genero;
+						$_SESSION["fecha_nacimiento"] = $fecha;
+						
+						header ("Location: index.php");		//Logueamos y enviamos al index	
 										
 				
 			

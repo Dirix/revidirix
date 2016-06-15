@@ -27,7 +27,7 @@ function verificarRol($nombre_usuario, $clave_usuario){
 include "conexion.php"; 
 
 			$consulta="
-			select * from usuario u join rol r on u.id_usuario = r.id_rol
+			select * from usuario u join rol r on u.rol = r.id_rol
 			where u.login = '$nombre_usuario'
 			
 			";

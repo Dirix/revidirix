@@ -30,6 +30,12 @@
 					include "lib-menuAdmin.php";	
 
 					}
+					
+									//Si es administrador mostramos el panel de administracion
+					if(isset($_SESSION['usuario']) && $_SESSION['rol'] == 'contenidista'){
+					include "lib-menuContenidista.php";	
+
+					}
 
 
 		

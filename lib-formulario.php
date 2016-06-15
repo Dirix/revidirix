@@ -32,6 +32,7 @@ $sexo="";
 
 echo "
 
+
     <div class='form-group'>
         <label class='control-label col-xs-2'>Usuario: </label>
         <div class='col-xs-9'>
@@ -87,7 +88,7 @@ echo "
     <div class='form-group'>
         <label class='control-label col-xs-2' >F. Nacimiento</label>
         <div class='col-xs-9'>
-            <input type='tel' class='form-control' placeholder='Fecha' name='fecha' value=$fecha>
+            <input type='tel' class='form-control' placeholder='Fecha' name='fecha' id='fecha' value=$fecha>
         </div>
     </div>
     <div class='form-group'>
@@ -123,7 +124,8 @@ echo "
             <input type='reset' class='btn btn-default' value='Limpiar'>
         </div>
     </div>
-
+	
+	
 
 ";
 
@@ -159,4 +161,10 @@ echo "
 		";
 
 	}
+	
+	
+	//Datapicker
+	
+
+	
 ?>

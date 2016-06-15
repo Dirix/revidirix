@@ -13,14 +13,9 @@
         </div>
         <div class="navbar-collapse collapse sidebar-navbar-collapse">
           <ul class="nav navbar-nav">
-            <p class="titulo">Administrador</p>
-            <li><a href="registrarUsuario.php">Crear usuario</a></li>
-            <li><a href="buscarUsuario.php">Buscar usuario</a></li>
-            <li><a href="buscarCliente.php">Buscar cliente</a></li>
-            <li><a href="#">Generar publicacion</a></li>			
-            <li><a href="#">Editar publicacion</a></li>	
-            <li><a href="#">Generar suscripcion</a></li>			
-            <li><a href="#">Editar suscripcion</a></li>
+            <p class="titulo">Contenidista</p>
+            <li><a href="#">Ver articulos pendientes</a></li>
+            <li><a href="#">Ver articulos cerrados</a></li>
 			
 			<!--
             <li class="dropdown">
