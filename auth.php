@@ -41,6 +41,7 @@ include "conexion.php";
 					{ 
 						if ($nombre_usuario==$row['login'] && $clave_usuario==$row['clave'])
 						{
+						$_SESSION["id"] = $row['id_usuario'];
 						$_SESSION["usuario"] = $row['login'];
 						$_SESSION["clave"] = $row['clave'];
 						$_SESSION["nombre"] = $row['nombre'];
@@ -81,6 +82,8 @@ include "conexion.php";
 					{ 
 						if ($nombre_usuario==$row['login'] && $clave_usuario==$row['clave'])
 						{
+						$_SESSION["id"] = $row['id_cliente'];
+						$_SESSION["cliente"] = 'si';
 						$_SESSION["usuario"] = $row['login'];
 						$_SESSION["clave"] = $row['clave'];
 						$_SESSION["nombre"] = $row['nombre'];

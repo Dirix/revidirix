@@ -64,7 +64,20 @@ background-image: url(none);
 background-repeat: no-repeat;
 line-height: 25px;
 font-size: 14px;
+}
+
+p.portada{
+float: none;
+color: black;
+margin: 10px;
+border-radius: 0em;
+text-decoration: none;
+background-image: url(none); 
+background-repeat: no-repeat;
+line-height: 25px;
+font-size: 18px;
 } 
+
 #publicar {
  width: 100%;
  margin: 0 auto;
@@ -80,6 +93,12 @@ color: red;
  width: 300px;
  height: 300px:
  float: left;
+
+}
+
+img.portada {
+ width: 350px;
+ height: 350px;
 
 }
 

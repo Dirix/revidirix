@@ -62,8 +62,12 @@ if ($num_total_registros > 0) {
 
 	}
 
-	$resultadoArray=[$inicio, $total_paginas, $pagina];
 	
+	 if (isset($total_paginas))
+	$resultadoArray=[$inicio, $total_paginas, $pagina];
+	 else
+	$resultadoArray=[0, 0, 0];
+
 	return $resultadoArray;
 	
 }

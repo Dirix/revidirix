@@ -13,14 +13,13 @@
         </div>
         <div class="navbar-collapse collapse sidebar-navbar-collapse">
           <ul class="nav navbar-nav">
-            <p class="titulo">Administrador</p>
-            <li><a href="registrarUsuario.php">Crear usuario</a></li>
-            <li><a href="buscarUsuario.php">Buscar usuario</a></li>
-            <li><a href="buscarCliente.php">Buscar cliente</a></li>
-            <li><a href="menuCrearPublicacion.php">Generar publicacion</a></li>			
-            <li><a href="#">Editar publicacion</a></li>	
-            <li><a href="#">Generar suscripcion</a></li>			
-            <li><a href="#">Editar suscripcion</a></li>
+            <p class="titulo">Menu</p>
+            <li><a href="#">Mis revistas</a></li>
+            <li><a href="#">Mis diarios</a></li>
+            <li><a href="#">Suscripciones</a></li>
+            <li><a href="#">Facturas</a></li>			
+            <li><a href="#">Contacto</a></li>	
+            <li><a href="cerrarSession.php">Salir</a></li>			
 			
 			<!--
             <li class="dropdown">

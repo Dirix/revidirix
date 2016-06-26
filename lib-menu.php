@@ -25,9 +25,9 @@
 					  <li><a href="#">Contacto</a></li>
 					</ul>
 				 
-					<form class="busqueda navbar-left" role="search">
+					<form class="busqueda navbar-left" role="search" action="" method='get'>
 					  <div class="form-group">
-						<input type="text" class="form-control" placeholder="Buscar">
+						<input type="text" class="form-control" placeholder="Buscar" name="busqueda">
 					  </div>
 					  <button type="submit" class="btn btn-default">Buscar</button>
 					</form>
