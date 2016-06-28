@@ -14,8 +14,11 @@
         <div class="navbar-collapse collapse sidebar-navbar-collapse">
           <ul class="nav navbar-nav">
             <p class="titulo">Contenidista</p>
-            <li><a href="#">Ver articulos pendientes</a></li>
-            <li><a href="#">Ver articulos cerrados</a></li>
+            <li><a href="menuCrearPublicacion.php">Crear revista</a></li>
+            <li><a href="buscarRevistas.php?tipo=pendientes">Revistas pendientes</a></li>
+            <li><a href="#">Revistas cerradas</a></li>
+            <li><a href="#">Revistas publicadas</a></li>
+            <li><a href="#">Salir</a></li>
 			
 			<!--
             <li class="dropdown">

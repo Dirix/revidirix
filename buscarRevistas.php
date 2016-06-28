@@ -2,12 +2,19 @@
 	include "conexion.php";
 	include "lib-validarRol.php"; 
 	session_start();
-	validarAdministrador(); //Verificamos que sea administrador
+	validarContenidista(); //Verificamos que sea contenidista
 	
 	if (isset($_GET["busqueda"]))
     $busqueda = $_GET["busqueda"];
 	else
 	$busqueda = "";
+
+	if (isset($_GET["tipo"]))
+    $tipo = $_GET["tipo"];
+	else
+	$tipo = "";
+
+
 
 ?>
 <html>
@@ -32,13 +39,26 @@
 
 <div class="container">
 
-	<?php
-	
+<?php			
+					//Si es administrador mostramos el panel de administracion
+					if(isset($_SESSION['usuario']) && $_SESSION['rol'] == 'administrador'){
+					include "lib-menuAdmin.php";	
 
-	
-					//Mostramos el panel de control de administrador
-					include "lib-menuAdmin.php";
-	?>
+					}
+					
+									//Si es administrador mostramos el panel de administracion
+					if(isset($_SESSION['usuario']) && $_SESSION['rol'] == 'contenidista'){
+					include "lib-menuContenidista.php";	
+
+					}
+
+					//Si es cliente mostramos el panel de cliente
+					if(isset($_SESSION['cliente'])){
+					include "lib-menuCliente.php";	
+
+					}
+		
+		?>
 	
 	
 	
@@ -62,14 +82,23 @@
 						
 						
 							<?php
-							
-							
 
 							include "lib-funciones.php";
-							$sql="SELECT id_usuario, login, nombre, apellido, telefono FROM usuario where login like '%$busqueda%'"; //Escribimos la consulta
+							
+							if ($tipo=='pendientes') //Si son revistas pendientes hacemos esta consulta
+							$sql="select id_publicacion, p.nombre titulo, u.nombre nombre, apellido, login from publicacion p join usuario u on p.usuario_id = u.id_usuario where p.estado like 'borrador' and p.nombre like '%$busqueda%'";
+							elseif ($tipo=='cerrado') //Si son revistas pendientes hacemos esta consulta
+							$sql="select id_publicacion, p.nombre titulo, u.nombre nombre, apellido, login from publicacion p join usuario u on p.usuario_id = u.id_usuario where p.estado like 'publicado' and p.nombre like '%$busqueda%'";
+							else{
+							echo("error");
+							exit (0);
+							}
 							$res = consultar($sql); //Realizamos la consulta
 							$resultado_consulta=$res[0]; //Guardamos la tabla correspondiente a la consulta
 							$codigo_de_pagina=$res[1]; //Guardamos el codigo para administrar el paginado
+							
+							
+							
 							
 							//iniciamos tabla
 							echo "
@@ -81,9 +110,10 @@
 
 								<td class='active' colspan='7'>
 								
-									<form class='busqueda navbar-left' role='search' action='buscarUsuario.php' method='get'>
+									<form class='busqueda navbar-left' role='search' action='verRevistas.php' method='get'>
 									<h4>Buscar Cliente
 										<div class='form-group'>
+											<input type='hidden' class='form-control' placeholder='tipo' name='tipo' value='pendientes'>
 											<input type='text' class='form-control' placeholder='Buscar' name='busqueda'>
 										</div>
 										<button type='submit' class='btn btn-default'>Buscar</button> </h4>
@@ -93,18 +123,18 @@
 							</tr>
 
 							  <tr>
-								<td class='danger'><h4>#</h4></td>
 								<td class='danger'><h4>ID</h4></td>
+								<td class='danger'><h4>Titulo</h4></td>
 								<td class='danger'><h4>Usuario</h4></td>
-								<td class='danger'><h4>Nombre</h4></td>
 								<td class='danger'><h4>Apellido</h4></td>
-								<td class='danger'><h4>Telefono</h4></td>
-								<td class='danger'><h4></h4></td>
+								<td class='danger'><h4>#</h4></td>
+								<td class='danger'><h4>#</h4></td>
 							  </tr>
 							
 							
 							";
 							
+
 							while ($row = mysql_fetch_array($resultado_consulta)) {
 								//echo "<a href='#'>Usuario: $row[login] // Nombre: $row[nombre] $row[apellido]</a><br>";
 								
@@ -113,13 +143,12 @@
 
 
 								  <tr>
-									<td class='active'><input type='checkbox' name='select' value=$row[id_usuario]></td>
-									<td class='active'>$row[id_usuario]</td>
+									<td class='active'>$row[id_publicacion]</td>
+									<td class='active'>$row[titulo]</td>
 									<td class='active'>$row[login]</td>
-									<td class='active'>$row[nombre]</td>
-									<td class='active'>$row[apellido]</td>
-									<td class='active'>$row[telefono]</td>
-									<td class='active'><a href=menuEditarCliente.php?nro=$row[id_usuario]>Editar<a></td>
+									<td class='active'>$row[apellido], $row[nombre]</td>
+									<td class='active'><a href=#>Ver<a></td>
+									<td class='active'><a href=eliminar.php?eliminar=publicacion&codigo=$row[id_publicacion]>Eliminar<a></td>
 								  </tr>
 								
 								

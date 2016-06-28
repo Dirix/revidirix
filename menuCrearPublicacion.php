@@ -2,7 +2,7 @@
 	include "conexion.php"; 		
 	include "lib-validarRol.php"; 
 	session_start();
-	validarAdministrador(); //Verificamos que sea administrador
+	validarContenidista() //Verificamos que sea contenidista
 ?>
 <html>
 	

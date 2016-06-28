@@ -1,7 +1,14 @@
 <?php
 
+
+
+
 //Esta funcion se encarga de generar el listado y paginado de las consultas, y devolverlo en forma de array
 function consultar($cadena){ 
+
+
+
+
 
 
 
@@ -92,7 +99,17 @@ include "conexion.php";
 	}
 
 	
-function paginacion($total_paginas, $pagina){ 
+function paginacion($total_paginas, $pagina){
+	
+	if (isset($_REQUEST["busqueda"]))
+    $busqueda = $_REQUEST["busqueda"];
+	else
+	$busqueda = "";
+
+	if (isset($_REQUEST["tipo"]))
+    $tipo = $_REQUEST["tipo"];
+	else
+	$tipo = "";
 
 include "conexion.php"; 	
 
@@ -101,7 +118,7 @@ $rs="";
 	//Menu de Paginacion
 	if ($total_paginas > 1) {
 		if ($pagina != 1)
-			$rs= '<a href="?pagina='.($pagina-1).'"></a>';
+			$rs= "<a href=?pagina='$pagina'-1&busqueda=$busqueda&tipo=$tipo></a>";
 		for ($i=1;$i<=$total_paginas;$i++) {
 			if ($pagina == $i)
 				//si muestro el ?ndice de la p?gina actual, no coloco enlace
@@ -109,10 +126,10 @@ $rs="";
 			else
 				//si el indice no corresponde con la p?gina mostrada actualmente,
 				//coloco el enlace para ir a esa p?gina
-				$rs = $rs . '  <a href="?pagina='.$i.'">'.$i.'</a>  ';
+				$rs = $rs . "  <a href=?pagina=$i&busqueda=$busqueda&tipo=$tipo>$i</a>  ";
 		}
 		if ($pagina != $total_paginas)
-			$rs = $rs . '<a href="?pagina='.($pagina+1).'"></a>';
+			$rs = $rs . "<a href=?pagina='$pagina'+1&busqueda=$busqueda&tipo=$tipo></a>";
 	}
 
 
