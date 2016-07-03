@@ -15,7 +15,7 @@
 	  <link href="css/propios.css" rel="stylesheet">
 	  <script src="js/jquery.min.js"></script>
 	  <script src="js/bootstrap.min.js"></script>
-	  
+	  <script src="js/nicEdit.js" type="text/javascript"></script>
 	</head>
 
 	<body>
@@ -66,7 +66,7 @@
 								<form class='form-horizontal' enctype="multipart/form-data" action="generarPublicacion.php" method="post">
 								<?php
 															
-								include "lib-formularioPublicacion.php";
+								include "lib-formularioArticulo.php";
 															
 								?>
 															

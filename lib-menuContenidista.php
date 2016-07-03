@@ -16,8 +16,8 @@
             <p class="titulo">Contenidista</p>
             <li><a href="menuCrearPublicacion.php">Crear revista</a></li>
             <li><a href="buscarRevistas.php?tipo=pendientes">Revistas pendientes</a></li>
-            <li><a href="#">Revistas cerradas</a></li>
-            <li><a href="#">Revistas publicadas</a></li>
+            <li><a href="buscarRevistas.php?tipo=cerradas">Revistas cerradas</a></li>
+            <li><a href="buscarRevistas.php?tipo=publicadas">Revistas publicadas</a></li>
             <li><a href="#">Salir</a></li>
 			
 			<!--

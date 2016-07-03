@@ -98,6 +98,7 @@
 								<td class='danger'><h4>Apellido</h4></td>
 								<td class='danger'><h4>Telefono</h4></td>
 								<td class='danger'><h4></h4></td>
+								<td class='danger'><h4></h4></td> 
 							  </tr>
 							
 							
@@ -118,6 +119,7 @@
 									<td class='active'>$row[apellido]</td>
 									<td class='active'>$row[telefono]</td>
 									<td class='active'><a href=menuEditarCliente.php?nro=$row[id_cliente]>Editar<a></td>
+									<td class='active'><a href=eliminar.php?codigo=$row[id_cliente]&eliminar=cliente>Eliminar<a></td>
 								  </tr>
 								
 								

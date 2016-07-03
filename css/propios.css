@@ -102,5 +102,11 @@ img.portada {
 
 }
 
+img.reducido {
+ width: 175px;
+ height: 175px;
+
+}
+
 #search_box { float: right; width: 280px; height: 30px; }
 #search_box form { clear: both; width: 280px; height: 30px; padding: 0; } 

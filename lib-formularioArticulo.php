@@ -1,12 +1,12 @@
 <?php
     
     include "conexion.php";
-
-
+	$titulo = $_GET["titulo"];
+	
     
-    //Si recibimos algun parametro por GET significa que se va a editar una publicacion
-    if (isset($_GET["id_publicacion"])){
-        $id_publicacion = $_GET["id_publicacion"];
+    //Si recibimos algun parametro por GET significa que se va a editar un articulo
+    if (isset($_GET["id_articulo"])){
+        $id_publicacion = $_GET["id_articulo"];
 
         $sql = "select p.nombre titulo, p.descripcion descripcion, i.url, p.tipo_publicacion from publicacion p join imagen i on p.imagen_id = i.id_imagen
             where $id_publicacion=p.id_publicacion";
@@ -33,7 +33,7 @@
     //Si no recibimos ningun parametro significa que estamos creando una publicacion    
     }else{
 
-    $titulo = "";
+    $subtitulo = "";
     $contenido = "";
 
     $tipo = "";
@@ -41,11 +41,28 @@
 
 echo "
 
+<script type='text/javascript'>
+bkLib.onDomLoaded(function() {
+	new nicEditor().panelInstance('area1');
+	new nicEditor({fullPanel : true}).panelInstance('area2');
+	new nicEditor({iconsPath : 'imagenes/gif/nicEditorIcons.gif'}).panelInstance('area3');
+	new nicEditor({buttonList : ['fontSize','bold','italic','underline','strikeThrough','subscript','superscript','html','image']}).panelInstance('area4');
+	new nicEditor({maxHeight : 100}).panelInstance('area5');s
+});
+</script>
+
 
     <div class='form-group'>
         <label class='control-label col-xs-2'>Titulo:</label>
         <div class='col-xs-9'>
             <input type='text' class='form-control' placeholder='Titulo de publicacion' name='titulo' value=$titulo>
+        </div>
+    </div>
+	
+    <div class='form-group'>
+        <label class='control-label col-xs-2'>Subtitulo:</label>
+        <div class='col-xs-9'>
+            <input type='text' class='form-control' placeholder='Titulo de publicacion' name='subtitulo' value=$subtitulo>
         </div>
     </div>
 	
@@ -75,9 +92,9 @@ echo "
 	    <div class='form-group'>
         <label class='control-label col-xs-2'>Tipo:</label>
         <div class='col-xs-9'>
-		<select class='form-control' name='tipo' id='tipo'>
-			<option value='revista'>Revista</option>
-			<option value='diario'>Diario</option>
+		<select class='form-control' name='estado' id='tipo'>
+			<option value='borrador'>Borrador</option>
+			<option value='listo'>Listo para publicar</option>
 		</select>
         </div>
     </div>
@@ -85,9 +102,9 @@ echo "
 
 	
     <div class='form-group'>
-        <label class='control-label col-xs-2'>Descripcion:</label>
+        <label class='control-label col-xs-2'>Contenido:</label>
         <div class='col-xs-9'>
-            <textarea rows='7' class='form-control' placeholder='Descripcion' name='descripcion' >$contenido</textarea>
+            <textarea rows='10' class='form-control' placeholder='Descripcion' name='descripcion' id='area1' >$contenido</textarea>
         </div>
     </div>
 

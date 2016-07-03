@@ -87,7 +87,9 @@
 							
 							if ($tipo=='pendientes') //Si son revistas pendientes hacemos esta consulta
 							$sql="select id_publicacion, p.nombre titulo, u.nombre nombre, apellido, login from publicacion p join usuario u on p.usuario_id = u.id_usuario where p.estado like 'borrador' and p.nombre like '%$busqueda%'";
-							elseif ($tipo=='cerrado') //Si son revistas pendientes hacemos esta consulta
+							elseif ($tipo=='cerradas') //Si son revistas pendientes hacemos esta consulta
+							$sql="select id_publicacion, p.nombre titulo, u.nombre nombre, apellido, login from publicacion p join usuario u on p.usuario_id = u.id_usuario where p.estado like 'cerrado' and p.nombre like '%$busqueda%'";
+							elseif ($tipo=='publicadas') //Si son revistas pendientes hacemos esta consulta
 							$sql="select id_publicacion, p.nombre titulo, u.nombre nombre, apellido, login from publicacion p join usuario u on p.usuario_id = u.id_usuario where p.estado like 'publicado' and p.nombre like '%$busqueda%'";
 							else{
 							echo("error");
@@ -110,8 +112,8 @@
 
 								<td class='active' colspan='7'>
 								
-									<form class='busqueda navbar-left' role='search' action='verRevistas.php' method='get'>
-									<h4>Buscar Cliente
+									<form class='busqueda navbar-left' role='search' action='buscarRevistas.php' method='get'>
+									<h4>Buscar Revista
 										<div class='form-group'>
 											<input type='hidden' class='form-control' placeholder='tipo' name='tipo' value='pendientes'>
 											<input type='text' class='form-control' placeholder='Buscar' name='busqueda'>
@@ -147,7 +149,7 @@
 									<td class='active'>$row[titulo]</td>
 									<td class='active'>$row[login]</td>
 									<td class='active'>$row[apellido], $row[nombre]</td>
-									<td class='active'><a href=#>Ver<a></td>
+									<td class='active'><a href=editarPublicacion.php?id_publicacion=$row[id_publicacion]>Ver<a></td>
 									<td class='active'><a href=eliminar.php?eliminar=publicacion&codigo=$row[id_publicacion]>Eliminar<a></td>
 								  </tr>
 								
