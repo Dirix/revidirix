@@ -63,7 +63,7 @@
 
 						
 							<!-- Insertamos el formulario de creacion de usuario contenidista-->
-								<form class='form-horizontal' enctype="multipart/form-data" action="generarPublicacion.php" method="post">
+								<form class='form-horizontal' enctype="multipart/form-data" action="generarArticulo.php" method="post">
 								<?php
 															
 								include "lib-formularioArticulo.php";

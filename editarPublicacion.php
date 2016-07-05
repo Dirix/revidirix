@@ -266,6 +266,7 @@
 									<form class='busqueda navbar-left' role='search' action='menuCrearArticulo.php' method='get'>
 									<h4>Articulo
 										<div class='form-group'>
+										<input type='hidden' name='id_publicacion' value=$codigo_publicacion />
 											<input type='text' class='form-control' placeholder='Ingrese el nombre del articulo' name='titulo'>
 										</div>
 										<button type='submit' class='btn btn-default'>Crear</button> </h4>

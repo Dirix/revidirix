@@ -2,7 +2,10 @@
     
     include "conexion.php";
 	$titulo = $_GET["titulo"];
-	
+	$id_publicacion = $_GET["id_publicacion"];
+
+
+
     
     //Si recibimos algun parametro por GET significa que se va a editar un articulo
     if (isset($_GET["id_articulo"])){
@@ -90,12 +93,46 @@ bkLib.onDomLoaded(function() {
     </div>			
 		
 	    <div class='form-group'>
-        <label class='control-label col-xs-2'>Tipo:</label>
+        <label class='control-label col-xs-2'>Estado:</label>
         <div class='col-xs-9'>
 		<select class='form-control' name='estado' id='tipo'>
 			<option value='borrador'>Borrador</option>
 			<option value='listo'>Listo para publicar</option>
 		</select>
+        </div>
+    </div>
+
+        <div class='form-group'>
+        <label class='control-label col-xs-2'>Seccion:</label>
+        <div class='col-xs-9'>
+        <select class='form-control' name='seccion' id='seccion'>";
+
+
+
+
+
+
+
+                  $sql = "select s.nombre seccion, s.id_seccion id from publicacion p join seccion s on s.publicacion_id = p.id_publicacion
+              where $id_publicacion=p.id_publicacion";
+
+
+            
+            $result=mysql_query($sql, $conexion) or die (mysql_error());
+
+   
+                     while ($row=@mysql_fetch_array($result)) 
+                    { 
+
+                    
+                    echo "<option value=$row[id]>$row[seccion]</option>";
+                    
+                    } 
+
+
+
+        echo " 
+        </select>
         </div>
     </div>
 	
@@ -104,7 +141,7 @@ bkLib.onDomLoaded(function() {
     <div class='form-group'>
         <label class='control-label col-xs-2'>Contenido:</label>
         <div class='col-xs-9'>
-            <textarea rows='10' class='form-control' placeholder='Descripcion' name='descripcion' id='area1' >$contenido</textarea>
+            <textarea rows='10' class='form-control' placeholder='Descripcion' name='contenido' id='area1' >$contenido</textarea>
         </div>
     </div>
 
