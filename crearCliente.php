@@ -47,6 +47,8 @@ validarNuevoUsuario($nombre, $usuario, $clave, $apellido, $mail, $dni, $fecha, $
 			$result=mysql_query($sql, $conexion);
 
 			
+			
+			
 			//Iniciamos la session con los Datos
 			
 						$_SESSION["usuario"] = $usuario;
@@ -59,6 +61,21 @@ validarNuevoUsuario($nombre, $usuario, $clave, $apellido, $mail, $dni, $fecha, $
 						$_SESSION["direccion"] = $direccion;
 						$_SESSION["genero"] = $genero;
 						$_SESSION["fecha_nacimiento"] = $fecha;
+						$_SESSION["rol"] =	'usuario';	
+						$_SESSION["cliente"] = 'si';
+						
+						
+			$sql="SELECT id_cliente FROM cliente ORDER BY id_cliente DESC LIMIT 1";
+
+			//Obtenemos el id del nuevo usuario
+			$result=mysql_query($sql, $conexion);
+						
+						while ($row = mysql_fetch_array($result)) {
+					
+								
+							$_SESSION["id"]=$row['id_cliente'];
+							
+							}
 						
 						header ("Location: index.php");		//Logueamos y enviamos al index	
 										

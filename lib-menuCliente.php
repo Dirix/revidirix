@@ -14,9 +14,9 @@
         <div class="navbar-collapse collapse sidebar-navbar-collapse">
           <ul class="nav navbar-nav">
             <p class="titulo">Menu</p>
-            <li><a href="#">Mis revistas</a></li>
-            <li><a href="#">Mis diarios</a></li>
-            <li><a href="#">Suscripciones</a></li>
+            <li><a href="miRevista.php?tipo=revistas">Mis revistas</a></li>
+            <li><a href="miRevista.php?tipo=diarios">Mis diarios</a></li>
+            <li><a href="miSuscripcion.php">Suscripciones</a></li>
             <li><a href="#">Facturas</a></li>			
             <li><a href="#">Contacto</a></li>	
             <li><a href="cerrarSession.php">Salir</a></li>			

@@ -8,7 +8,7 @@
     if (isset($_GET["id_publicacion"])){
         $id_publicacion = $_GET["id_publicacion"];
 
-        $sql = "select p.nombre titulo, p.descripcion descripcion, i.url, p.tipo_publicacion from publicacion p join imagen i on p.imagen_id = i.id_imagen
+        $sql = "select p.nombre titulo, p.descripcion descripcion, i.url, p.tipo_publicacion, p.estado from publicacion p join imagen i on p.imagen_id = i.id_imagen
             where $id_publicacion=p.id_publicacion";
 
 
@@ -24,7 +24,7 @@
                         $contenido = $row['descripcion'];
                         $imagen = $row['url'];
                         $tipo = $row['tipo_publicacion'];
-                  
+						$estado = $row['estado'];
                     
                     } 
                     
@@ -35,7 +35,7 @@
 
     $titulo = "";
     $contenido = "";
-
+	$estado = "";
     $tipo = "";
     }
 
@@ -45,7 +45,7 @@ echo "
     <div class='form-group'>
         <label class='control-label col-xs-2'>Titulo:</label>
         <div class='col-xs-9'>
-            <input type='text' class='form-control' placeholder='Titulo de publicacion' name='titulo' value=$titulo>
+            <input type='text' class='form-control' placeholder='Titulo de publicacion' name='titulo' value='$titulo'>
         </div>
     </div>
 	
@@ -72,12 +72,22 @@ echo "
         </div>
     </div>			
 		
-	    <div class='form-group'>
+	<div class='form-group'>
         <label class='control-label col-xs-2'>Tipo:</label>
         <div class='col-xs-9'>
 		<select class='form-control' name='tipo' id='tipo'>
 			<option value='revista'>Revista</option>
 			<option value='diario'>Diario</option>
+		</select>
+        </div>
+    </div>
+	
+	<div class='form-group'>
+        <label class='control-label col-xs-2'>Estado:</label>
+        <div class='col-xs-9'>
+		<select class='form-control' name='estado' id='estado'>
+			<option value='borrador'>Borrador</option>
+			<option value='listo'>Listo para publicar</option>
 		</select>
         </div>
     </div>
@@ -110,6 +120,17 @@ echo "
     }else {
         
         echo "<script type='text/javascript'>document.getElementById('tipo').selectedIndex = '1'</script>";
+
+    }
+	
+    if($estado=='borrador'){
+
+        echo "<script type='text/javascript'>document.getElementById('estado').selectedIndex = '0'</script>";
+
+
+    }else {
+        
+        echo "<script type='text/javascript'>document.getElementById('estado').selectedIndex = '1'</script>";
 
     }
 

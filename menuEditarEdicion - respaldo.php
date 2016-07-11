@@ -3,6 +3,7 @@
 	include "lib-validarRol.php"; 
 	session_start();
 	validarContenidista() //Verificamos que sea contenidista
+
 ?>
 <html>
 	
@@ -15,7 +16,7 @@
 	  <link href="css/propios.css" rel="stylesheet">
 	  <script src="js/jquery.min.js"></script>
 	  <script src="js/bootstrap.min.js"></script>
-	  
+	  <script src="js/nicEdit.js" type="text/javascript"></script>
 	</head>
 
 	<body>
@@ -27,11 +28,20 @@
 
 <div class="container">
 
-	<?php			
+	<?php
+	
+	
+					//Si es administrador mostramos el panel de administracion
+					if(isset($_SESSION['usuario']) && $_SESSION['rol'] == 'administrador'){
+					include "lib-menuAdmin.php";	
 
-	include "lib-menuLeft.php"; //Cargamos el menu izquierdo dependiendo del tipo de usuario logueado
-		
-		?>
+					}
+					
+									//Si es administrador mostramos el panel de administracion
+					if(isset($_SESSION['usuario']) && $_SESSION['rol'] == 'contenidista'){
+					include "lib-menuContenidista.php";	
+
+					}	?>
 	
 	
 	
@@ -54,10 +64,12 @@
 
 						
 							<!-- Insertamos el formulario de creacion de usuario contenidista-->
-								<form class='form-horizontal' enctype="multipart/form-data" action="generarPublicacion.php" method="post">
+								<form class='form-horizontal' enctype="multipart/form-data" action="editarEdicion.php" method="post">
 								<?php
-															
-								include "lib-formularioPublicacion.php";
+												
+								echo "<input type='hidden' name='id_edicion' value=$_REQUEST[id_edicion]>";
+								
+								include "lib-formularioEdicion.php";
 															
 								?>
 															

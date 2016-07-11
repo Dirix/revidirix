@@ -43,7 +43,7 @@
 										
 								<?php
 								//Hacemos una consulta a la base de datos para saber todas las publicaciones que hay
-									$sql="select id_publicacion, p.descripcion descripcion_publicacion, i.descripcion descripcion_imagen, nombre, tipo_publicacion, url from publicacion p join imagen i on p.imagen_id = i.id_imagen where p.nombre like '%$busqueda%' and p.tipo_publicacion like 'revista' and p.estado like 'publicado'";
+									$sql="select id_publicacion, p.descripcion descripcion_publicacion, i.descripcion descripcion_imagen, nombre, tipo_publicacion, url from publicacion p join imagen i on p.imagen_id = i.id_imagen where p.nombre like '%$busqueda%' and p.tipo_publicacion like 'diario' and p.estado like 'publicado'";
 									//$sql="SELECT id_cliente, login, nombre, apellido, telefono FROM cliente where login like '%$busqueda%'"; //Escribimos la consulta
 									$res = consultar($sql); //Realizamos la consulta
 									$resultado_consulta=$res[0]; //Guardamos la tabla correspondiente a la consulta
@@ -60,8 +60,7 @@
 												<img class='portada' src='$row[url]' alt='$row[descripcion_imagen]'>	
 												
 												<p class='portada'>$row[descripcion_publicacion]</p>
-
-												<button class='btn btn-success btn-lg' onClick=location.href='publicacion.php?id_publicacion=$row[id_publicacion]'>Ver revista</button>
+												<button class='btn btn-success btn-lg' onClick=location.href='publicacion.php?id_publicacion=$row[id_publicacion]'>Ver diario</button>
 												</div>
 											</div> 
 								

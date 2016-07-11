@@ -32,13 +32,11 @@
 
 <div class="container">
 
-	<?php
-	
+	<?php			
 
-	
-					//Mostramos el panel de control de administrador
-					include "lib-menuAdmin.php";
-	?>
+	include "lib-menuLeft.php"; //Cargamos el menu izquierdo dependiendo del tipo de usuario logueado
+		
+		?>
 	
 	
 	

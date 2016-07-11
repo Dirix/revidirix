@@ -10,7 +10,7 @@
 			  <span class="icon-bar"></span>
 			  <span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">PaginaRevista</a>
+			<a class="navbar-brand" href="#">InfoNete</a>
 		  </div>
 		 
 		  <!-- Agrupar los enlaces de navegación, los formularios y cualquier
@@ -20,8 +20,8 @@
 					
 					  <!-- li class="active"><a href="#">Revista</a></li> -->
 
-					  <li><a href="index.php">Revista</a></li>
-					  <li><a href="#">Diario</a></li>
+					  <li><a href="revistas.php">Revista</a></li>
+					  <li><a href="diarios.php">Diario</a></li>
 					  <li><a href="#">Contacto</a></li>
 					</ul>
 				 

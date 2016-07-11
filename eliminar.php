@@ -65,6 +65,29 @@
 		
 		
 	}
+	
+	elseif ($eliminar=='articulo') {
+
+	
+	
+		validarContenidista(); //Verificamos que sea contenidista
+		
+		//Verificamos que la seccion haya sido creada por el contenidista que la quiere eliminar
+		//$sql = "select * from seccion
+		//where usuario_id=$_SESSION[id]";
+		//$result=mysql_query($sql, $conexion) or die (mysql_error());
+	
+	
+		
+		$sql="DELETE FROM ARTICULO
+		WHERE  id_articulo=$codigo";
+
+		$result=mysql_query($sql, $conexion);
+
+		header("Location:".$_SERVER['HTTP_REFERER']);   //regresamos
+		
+		
+	}
 
 	elseif ($eliminar=='cliente') {
 

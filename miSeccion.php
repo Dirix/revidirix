@@ -2,12 +2,28 @@
 	include "conexion.php";
 	include "lib-validarRol.php"; 
 	session_start();
-	validarAdministrador(); //Verificamos que sea administrador
+	login(); //Verificamos que este logueado
 	
 	if (isset($_GET["busqueda"]))
     $busqueda = $_GET["busqueda"];
 	else
 	$busqueda = "";
+
+	if (isset($_GET["tipo"]))
+    $tipo = $_GET["tipo"];
+	else
+	$tipo = "";
+
+	if (isset($_GET["id_seccion"]))
+    $id_seccion = $_GET["id_seccion"];
+	else
+	$id_seccion = "";
+
+	if (isset($_GET["id_edicion"]))
+    $id_edicion = $_GET["id_edicion"];
+	else
+	$id_edicion = "";
+
 
 ?>
 <html>
@@ -32,13 +48,11 @@
 
 <div class="container">
 
-	<?php
-	
+	<?php			
 
-	
-					//Mostramos el panel de control de administrador
-					include "lib-menuAdmin.php";
-	?>
+	include "lib-menuLeft.php"; //Cargamos el menu izquierdo dependiendo del tipo de usuario logueado
+		
+		?>
 	
 	
 	
@@ -63,13 +77,25 @@
 						
 							<?php
 							
+
+							
+							include "lib-funciones.php";
 							
 
-							include "lib-funciones.php";
-							$sql="SELECT id_usuario, login, nombre, apellido, telefono FROM usuario where login like '%$busqueda%'"; //Escribimos la consulta
+							$sql="select a.titulo, a.fecha_creacion fecha, id_articulo, s.nombre seccion
+							from seccion s join edicion e on s.edicion_id = e.id_edicion join compra c on c.edicion_id = e.id_edicion join articulo a on a.seccion_id = s.id_seccion
+							where c.cliente_id = $_SESSION[id] and a.titulo like '%$busqueda%' and e.id_edicion = $id_edicion and s.id_seccion = $id_seccion";
+							
+
+	
+							
+
 							$res = consultar($sql); //Realizamos la consulta
 							$resultado_consulta=$res[0]; //Guardamos la tabla correspondiente a la consulta
 							$codigo_de_pagina=$res[1]; //Guardamos el codigo para administrar el paginado
+							
+							
+							
 							
 							//iniciamos tabla
 							echo "
@@ -81,9 +107,11 @@
 
 								<td class='active' colspan='7'>
 								
-									<form class='busqueda navbar-left' role='search' action='buscarUsuario.php' method='get'>
-									<h4>Buscar Cliente
+									<form class='busqueda navbar-left' role='search' action='miSeccion.php' method='get'>
+									<h4>Buscar Articulo
 										<div class='form-group'>
+											<input type='hidden' class='form-control' placeholder='tipo' name='id_edicion' value=$_REQUEST[id_edicion]>
+											<input type='hidden' class='form-control' placeholder='tipo' name='id_seccion' value=$_REQUEST[id_seccion]>
 											<input type='text' class='form-control' placeholder='Buscar' name='busqueda'>
 										</div>
 										<button type='submit' class='btn btn-default'>Buscar</button> </h4>
@@ -93,35 +121,32 @@
 							</tr>
 
 							  <tr>
+
+								<td class='danger'><h4>Titulo</h4></td>
+								<td class='danger'><h4>Seccion</h4></td>
+								<td class='danger'><h4>Fecha</h4></td>
 								<td class='danger'><h4>#</h4></td>
-								<td class='danger'><h4>ID</h4></td>
-								<td class='danger'><h4>Usuario</h4></td>
-								<td class='danger'><h4>Nombre</h4></td>
-								<td class='danger'><h4>Apellido</h4></td>
-								<td class='danger'><h4>Telefono</h4></td>
-								<td class='danger'><h4></h4></td>
-								<td class='danger'><h4></h4></td>
 							  </tr>
 							
 							
 							";
 							
+
 							while ($row = mysql_fetch_array($resultado_consulta)) {
 								//echo "<a href='#'>Usuario: $row[login] // Nombre: $row[nombre] $row[apellido]</a><br>";
+								
+						
+								
 								
 								echo "
 								
 
 
 								  <tr>
-									<td class='active'><input type='checkbox' name='select' value=$row[id_usuario]></td>
-									<td class='active'>$row[id_usuario]</td>
-									<td class='active'>$row[login]</td>
-									<td class='active'>$row[nombre]</td>
-									<td class='active'>$row[apellido]</td>
-									<td class='active'>$row[telefono]</td>
-									<td class='active'><a href=menuEditarUsuario.php?nro=$row[id_usuario]>Editar<a></td>
-									<td class='active'><a href=eliminar.php?codigo=$row[id_usuario]&eliminar=usuario>Eliminar<a></td>
+									<td class='active'>$row[titulo]</td>
+									<td class='active'>$row[seccion]</td>
+									<td class='active'>$row[fecha]</td>
+									<td class='active'><a href=miArticulo.php?id_articulo=$row[id_articulo]>Ver<a></td>
 								  </tr>
 								
 								

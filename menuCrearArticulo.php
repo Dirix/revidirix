@@ -27,20 +27,11 @@
 
 <div class="container">
 
-	<?php
-	
-	
-					//Si es administrador mostramos el panel de administracion
-					if(isset($_SESSION['usuario']) && $_SESSION['rol'] == 'administrador'){
-					include "lib-menuAdmin.php";	
+	<?php			
 
-					}
-					
-									//Si es administrador mostramos el panel de administracion
-					if(isset($_SESSION['usuario']) && $_SESSION['rol'] == 'contenidista'){
-					include "lib-menuContenidista.php";	
-
-					}	?>
+	include "lib-menuLeft.php"; //Cargamos el menu izquierdo dependiendo del tipo de usuario logueado
+		
+		?>
 	
 	
 	
@@ -65,6 +56,8 @@
 							<!-- Insertamos el formulario de creacion de usuario contenidista-->
 								<form class='form-horizontal' enctype="multipart/form-data" action="generarArticulo.php" method="post">
 								<?php
+								
+								
 															
 								include "lib-formularioArticulo.php";
 															

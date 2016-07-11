@@ -2,12 +2,10 @@
 	include "conexion.php";
 	include "lib-validarRol.php"; 
 	session_start();
-	validarAdministrador(); //Verificamos que sea administrador
+	login(); //Verificamos que este logueado
 	
-	if (isset($_GET["busqueda"]))
-    $busqueda = $_GET["busqueda"];
-	else
-	$busqueda = "";
+
+
 
 ?>
 <html>
@@ -32,13 +30,11 @@
 
 <div class="container">
 
-	<?php
-	
+	<?php			
 
-	
-					//Mostramos el panel de control de administrador
-					include "lib-menuAdmin.php";
-	?>
+	include "lib-menuLeft.php"; //Cargamos el menu izquierdo dependiendo del tipo de usuario logueado
+		
+		?>
 	
 	
 	
@@ -63,13 +59,26 @@
 						
 							<?php
 							
+
+							
+							include "lib-funciones.php";
+							
+							//Consultamos nuestras suscripciones
+							$sql="SELECT *
+							FROM suscripcion s join cliente c on s.cliente_id=c.id_cliente
+							WHERE cliente_id = $_SESSION[id]
+							"
+							;
 							
 
-							include "lib-funciones.php";
-							$sql="SELECT id_usuario, login, nombre, apellido, telefono FROM usuario where login like '%$busqueda%'"; //Escribimos la consulta
+
+
 							$res = consultar($sql); //Realizamos la consulta
 							$resultado_consulta=$res[0]; //Guardamos la tabla correspondiente a la consulta
 							$codigo_de_pagina=$res[1]; //Guardamos el codigo para administrar el paginado
+							
+							
+							
 							
 							//iniciamos tabla
 							echo "
@@ -81,47 +90,58 @@
 
 								<td class='active' colspan='7'>
 								
-									<form class='busqueda navbar-left' role='search' action='buscarUsuario.php' method='get'>
-									<h4>Buscar Cliente
+									<form class='busqueda navbar-left' role='search' action='solicitarCompraSuscripcion.php' method='get'>
+									<h4>Suscribirse
 										<div class='form-group'>
-											<input type='text' class='form-control' placeholder='Buscar' name='busqueda'>
+											<input type='hidden' class='form-control' placeholder='tipo' name='id_usuario' value=$_SESSION[id]>
+
+										
+											<SELECT NAME='suscripcion' class='form-control' placeholder='tiempo'>    
+										   <OPTION VALUE='1'>1 Mes (100$)</OPTION> 
+										   <OPTION VALUE='3'>3 Meses (300$)</OPTION> 
+										   <OPTION VALUE='6'>6 Meses (550$)</OPTION>
+										   <OPTION VALUE='12'>12 Meses (1000$)</OPTION>
+										   <OPTION VALUE='24'>24 Meses (1600$)</OPTION> 
+											</SELECT> 
+										
 										</div>
-										<button type='submit' class='btn btn-default'>Buscar</button> </h4>
+										<button type='submit' class='btn btn-success btn-lg'>Comprar</button> </h4>
 									</form>
 								</td>
 
 							</tr>
 
 							  <tr>
-								<td class='danger'><h4>#</h4></td>
+
 								<td class='danger'><h4>ID</h4></td>
-								<td class='danger'><h4>Usuario</h4></td>
-								<td class='danger'><h4>Nombre</h4></td>
-								<td class='danger'><h4>Apellido</h4></td>
-								<td class='danger'><h4>Telefono</h4></td>
-								<td class='danger'><h4></h4></td>
-								<td class='danger'><h4></h4></td>
+								<td class='danger'><h4>Inicio</h4></td>
+								<td class='danger'><h4>Fin</h4></td>
+								<td class='danger'><h4>Estado</h4></td>
 							  </tr>
 							
 							
 							";
 							
+
 							while ($row = mysql_fetch_array($resultado_consulta)) {
 								//echo "<a href='#'>Usuario: $row[login] // Nombre: $row[nombre] $row[apellido]</a><br>";
+								
+						
+								if (compararFecha($row['inicio'], $row['fin']))
+								$estado='Suscripcion activa';
+								else
+								$estado='Suscripcion finalizada';
+								
 								
 								echo "
 								
 
 
 								  <tr>
-									<td class='active'><input type='checkbox' name='select' value=$row[id_usuario]></td>
-									<td class='active'>$row[id_usuario]</td>
-									<td class='active'>$row[login]</td>
-									<td class='active'>$row[nombre]</td>
-									<td class='active'>$row[apellido]</td>
-									<td class='active'>$row[telefono]</td>
-									<td class='active'><a href=menuEditarUsuario.php?nro=$row[id_usuario]>Editar<a></td>
-									<td class='active'><a href=eliminar.php?codigo=$row[id_usuario]&eliminar=usuario>Eliminar<a></td>
+									<td class='active'>$row[id_suscripcion]</td>
+									<td class='active'>$row[inicio]</td>
+									<td class='active'>$row[fin]</td>
+									<td class='active'>$estado</td>
 								  </tr>
 								
 								
@@ -137,7 +157,7 @@
 							
 							";
 							
-							echo '<p>';
+							echo '<p></p>';
 							
 							ejecutarCodigo($codigo_de_pagina);
 

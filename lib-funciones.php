@@ -142,4 +142,19 @@ function ejecutarCodigo($cadena){
 echo $cadena;
 
 }
+
+function compararFecha($fecha_actual, $fecha_entrada)
+{
+$fecha_actual = strtotime(date("d-m-Y H:i:00",time()));
+$fecha_entrada = strtotime($fecha_entrada);
+if($fecha_actual > $fecha_entrada){
+        return false;
+}else{
+        return true;
+}
+	
+	
+	
+	
+}
 ?>

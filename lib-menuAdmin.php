@@ -14,13 +14,13 @@
         <div class="navbar-collapse collapse sidebar-navbar-collapse">
           <ul class="nav navbar-nav">
             <p class="titulo">Administrador</p>
+			<li><a href="menuCrearPublicacion.php">Crear revista</a></li>
+            <li><a href="buscarRevistas.php?tipo=pendientes">Revistas pendientes</a></li>
+            <li><a href="buscarRevistas.php?tipo=cerradas">Revistas cerradas</a></li>
+            <li><a href="buscarRevistas.php?tipo=publicadas">Revistas publicadas</a></li>
             <li><a href="registrarUsuario.php">Crear usuario</a></li>
             <li><a href="buscarUsuario.php">Buscar usuario</a></li>
             <li><a href="buscarCliente.php">Buscar cliente</a></li>
-            <li><a href="menuCrearPublicacion.php">Generar publicacion</a></li>			
-            <li><a href="#">Editar publicacion</a></li>	
-            <li><a href="#">Generar suscripcion</a></li>			
-            <li><a href="#">Editar suscripcion</a></li>
 			
 			<!--
             <li class="dropdown">

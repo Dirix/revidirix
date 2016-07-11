@@ -1,18 +1,18 @@
 <?php
     
     include "conexion.php";
-	$titulo = $_GET["titulo"];
-	$id_publicacion = $_GET["id_publicacion"];
+	
+	$id_edicion = $_GET["id_edicion"];
 
 
 
     
     //Si recibimos algun parametro por GET significa que se va a editar un articulo
     if (isset($_GET["id_articulo"])){
-        $id_publicacion = $_GET["id_articulo"];
+        $id_articulo = $_GET["id_articulo"];
 
-        $sql = "select p.nombre titulo, p.descripcion descripcion, i.url, p.tipo_publicacion from publicacion p join imagen i on p.imagen_id = i.id_imagen
-            where $id_publicacion=p.id_publicacion";
+        $sql = "select * from articulo a join seccion s on a.seccion_id = s.id_seccion join imagen i on a.cabecera = i.id_imagen
+            where $id_articulo=a.id_articulo";
 
 
             
@@ -22,24 +22,29 @@
                 {
                      while ($row=@mysql_fetch_array($result)) 
                     { 
-
+						
                         $titulo = $row['titulo'];
-                        $contenido = $row['descripcion'];
+						$subtitulo = $row['subtitulo'];
+                        $contenido = $row['texto']; //contenido del articulo
+						$estado = $row['estado']; //estado del articulo
+						$seccion = $row['nombre']; //nombre de la seccion
                         $imagen = $row['url'];
-                        $tipo = $row['tipo_publicacion'];
+                        //$imagen = ""; //Por el momento no mostramos la imagen cargada
                   
                     
                     } 
                     
                 
                 }
-    //Si no recibimos ningun parametro significa que estamos creando una publicacion    
+    //Si no recibimos ningun parametro significa que estamos creando un articulo    
     }else{
 
-    $subtitulo = "";
-    $contenido = "";
-
-    $tipo = "";
+                        $titulo = $_GET["titulo"];
+						$subtitulo = "";
+                        $contenido = ""; //contenido del articulo
+						$estado = ""; //estado del articulo
+						$seccion = ""; //nombre de la seccion
+						
     }
 
 echo "
@@ -58,14 +63,14 @@ bkLib.onDomLoaded(function() {
     <div class='form-group'>
         <label class='control-label col-xs-2'>Titulo:</label>
         <div class='col-xs-9'>
-            <input type='text' class='form-control' placeholder='Titulo de publicacion' name='titulo' value=$titulo>
+            <input type='text' class='form-control' placeholder='Titulo de publicacion' name='titulo' value='$titulo'>
         </div>
     </div>
 	
     <div class='form-group'>
         <label class='control-label col-xs-2'>Subtitulo:</label>
         <div class='col-xs-9'>
-            <input type='text' class='form-control' placeholder='Titulo de publicacion' name='subtitulo' value=$subtitulo>
+            <input type='text' class='form-control' placeholder='Titulo de publicacion' name='subtitulo' value='$subtitulo'>
         </div>
     </div>
 	
@@ -113,8 +118,8 @@ bkLib.onDomLoaded(function() {
 
 
 
-                  $sql = "select s.nombre seccion, s.id_seccion id from publicacion p join seccion s on s.publicacion_id = p.id_publicacion
-              where $id_publicacion=p.id_publicacion";
+                  $sql = "select s.nombre seccion, s.id_seccion id from edicion e join seccion s on s.edicion_id = e.id_edicion
+              where $id_edicion=e.id_edicion";
 
 
             
@@ -123,9 +128,14 @@ bkLib.onDomLoaded(function() {
    
                      while ($row=@mysql_fetch_array($result)) 
                     { 
-
+					
+					//Verificamos que seccion tenia asignado el articulo
+					if($row[seccion]==$seccion)
+					$seleccionado='selected';
+					else
+					$seleccionado='';
                     
-                    echo "<option value=$row[id]>$row[seccion]</option>";
+                    echo "<option value=$row[id] $seleccionado>$row[seccion]</option>"; //Mostramos en el select las secciones de la publicacion
                     
                     } 
 
@@ -156,14 +166,14 @@ bkLib.onDomLoaded(function() {
 	
 ";
 
-    if($tipo=='revista'){
+    if($estado=='listo'){
 
-        echo "<script type='text/javascript'>document.getElementById('tipo').selectedIndex = '0'</script>";
+        echo "<script type='text/javascript'>document.getElementById('tipo').selectedIndex = '1'</script>";
 
 
     }else {
         
-        echo "<script type='text/javascript'>document.getElementById('tipo').selectedIndex = '1'</script>";
+        echo "<script type='text/javascript'>document.getElementById('tipo').selectedIndex = '0'</script>";
 
     }
 

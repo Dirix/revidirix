@@ -15,7 +15,7 @@
 	  <link href="css/propios.css" rel="stylesheet">
 	  <script src="js/jquery.min.js"></script>
 	  <script src="js/bootstrap.min.js"></script>
-	  
+	  <script src="js/nicEdit.js" type="text/javascript"></script>
 	</head>
 
 	<body>
@@ -54,10 +54,12 @@
 
 						
 							<!-- Insertamos el formulario de creacion de usuario contenidista-->
-								<form class='form-horizontal' enctype="multipart/form-data" action="generarPublicacion.php" method="post">
+								<form class='form-horizontal' enctype="multipart/form-data" action="editarArticulo.php" method="post">
 								<?php
-															
-								include "lib-formularioPublicacion.php";
+								
+								echo "<input type='hidden' name='id_articulo' value=$_REQUEST[id_articulo]>";
+								
+								include "lib-formularioArticulo.php";
 															
 								?>
 															

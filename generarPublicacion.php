@@ -3,6 +3,7 @@ $tamañoMaximo=2500; //-->Establecemos el tamaño maximo del archivo
 session_start();
 include "conexion.php"; 
 $titulo=$_POST['titulo'];
+$estado=$_POST['estado'];
 $descripcion=$_POST['descripcion'];
 $tipo=$_POST['tipo'];
 $nombre_archivo=basename($_FILES['uploadedfile']['name']);
@@ -64,7 +65,7 @@ $nombre_archivo=basename($_FILES['uploadedfile']['name']);
 			
 			//Guardamos la publicacion en la base de datos
 			$sql="INSERT INTO publicacion (nombre,descripcion,estado, tipo_publicacion, usuario_id, imagen_id)
-			VALUES ('$titulo', '$descripcion', 'borrador', '$tipo', '$_SESSION[id]', (SELECT id_imagen FROM imagen ORDER BY id_imagen DESC LIMIT 1))";
+			VALUES ('$titulo', '$descripcion', '$estado', '$tipo', '$_SESSION[id]', (SELECT id_imagen FROM imagen ORDER BY id_imagen DESC LIMIT 1))";
 			//echo $sql;
 			//exit (0);
 			$result=mysql_query($sql, $conexion);
